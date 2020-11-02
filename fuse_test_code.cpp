@@ -19,14 +19,14 @@ static fuse_chan *channel = NULL;
 static fuse_session *session = NULL;
 static fuse_lowlevel_ops filesystem_operations;
 
-//Mount point and test file path
+//Mount point
 std::string mount_point(std::string(getenv("HOME")) + "/Documents/mount_test");
-std::string test_file_path(mount_point+"/"+FILE_NAME);
 
-//The virtual file name and size
+//The virtual file name, path, inode and size
 #define FILE_NAME "inode2"
 #define FILE_SIZE 1024 * 1024 * 1024
 #define FILE_INODE 2
+std::string test_file_path(mount_point+"/"+FILE_NAME);
 
 //function declaration
 void filesystem_thread_func();
