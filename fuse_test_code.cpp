@@ -1,7 +1,6 @@
 #define FUSE_USE_VERSION 26
 
 #include <chrono>
-#include <iostream>
 #include <future>
 #include <thread>
 #include <string.h>
@@ -38,9 +37,10 @@ int main()
 {
     printf("Testing the file in: %s\n", test_file_path.c_str());
     filesystem_thread.reset(new std::thread(filesystem_thread_func));
-    std::cout << "Press any key to perform the test";
+    printf("Press any key to perform the test");
     getchar();
     write_test();
+    printf("Test finished\n");
     filesystem_thread->join();
     return 0;
 }
@@ -217,9 +217,6 @@ static void filesystem_write(fuse_req_t req, fuse_ino_t ino, const char *buffer,
            (unsigned long long int)offset,
            (unsigned long long int)buffer_length);
     fuse_reply_write(req, buffer_length);
-    //This works find
-    //unique_buffer.reset(new char[4096]);
-    //This would freeze the terminal
     ptr_list.emplace_back(new char[4096]);
     printf("Finish\n");
 }
