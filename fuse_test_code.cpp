@@ -229,6 +229,9 @@ static void filesystem_write(fuse_req_t req, fuse_ino_t ino, const char *buffer,
     fuse_reply_write(req, buffer_length);
     //If you comment below out, everything is good
     ptr_list.emplace_back(new char[4096]);
+    //Limit the maximum memory usage to 100MB
+    if(ptr_list.size()>1024*100)
+        ptr_list.erase(ptr_list.begin());
     printf("Finish\n");
 }
 
