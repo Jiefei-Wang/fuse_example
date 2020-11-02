@@ -217,6 +217,7 @@ static void filesystem_write(fuse_req_t req, fuse_ino_t ino, const char *buffer,
            (unsigned long long int)offset,
            (unsigned long long int)buffer_length);
     fuse_reply_write(req, buffer_length);
+    //If you comment this out, everything is good
     ptr_list.emplace_back(new char[4096]);
     printf("Finish\n");
 }
